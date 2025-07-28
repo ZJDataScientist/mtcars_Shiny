@@ -3,6 +3,12 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(bslib)
+library(thematic)
+
+# Activate {thematic} for consistent plot styiling 
+
+thematic:: thematic_shiny()
 
 # Convert some variables in mtcars to factors for categorical analysis
 # These are used for discrete analysis and plots
@@ -16,6 +22,14 @@ mtcars$vs <- factor(mtcars$vs)
 # 2. UI Definition for the App to get inputs and display outputs
 
 ui <- fluidPage(
+  
+  # Custom theme with bslib
+  theme = bslib::bs_theme(
+    bg = "#FAFAFA",         # Dark solarized background
+    fg = "#657B83",         # Light text color
+    primary = "#268BD2",    # Cyan-like accent color
+    base_font = bslib::font_google("Pacifico")  # Fun Google Font
+  ),
   
   # App Title at the top
   titlePanel("MTCars Data Explorer"),
